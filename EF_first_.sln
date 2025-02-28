@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_first_", "EF_first_\EF_f
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_airplanes", "EF_airplanes\EF_airplanes.csproj", "{CDB1CB63-3D7F-4217-B19A-2492D83542E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EF_FinalWork_library", "EF_FinalWork_library\EF_FinalWork_library.csproj", "{211DBFC9-BBEE-49D0-8273-31D1E5357ED4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EF_FinalWork_library", "EF_FinalWork_library\EF_FinalWork_library.csproj", "{211DBFC9-BBEE-49D0-8273-31D1E5357ED4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,7 +5,7 @@ using System.Configuration;
 
 namespace Library.Persistance
 {
-    internal class LibraryDbContext : DbContext
+    public class LibraryDbContext : DbContext
     {
 
         public DbSet<Book> Books { get; set; }

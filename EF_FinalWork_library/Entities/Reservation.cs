@@ -12,5 +12,5 @@ public class Reservation
     public Customer Customer { get; set; } = null!;
     public int BookId { get; set; }
     public Book Book { get; set; } = null!;
-    public DateTime ReservedUntil { get; set; }
+    public DateTime ReservationDate { get; set; }
 }

@@ -9,6 +9,6 @@ namespace EF_FinalWork_library.Entities;
 public class Publisher
 {
     public int Id { get; set; }
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; }
     public ICollection<Book> Books { get; set; } = new List<Book>();
 }

@@ -12,5 +12,5 @@ public class Sale
     public Book Book { get; set; } = null!;
     public DateTime SaleDate { get; set; }
     public int Quantity { get; set; }
-    public decimal TotalPrice { get; set; }
+    public double TotalPrice { get; set; }
 }

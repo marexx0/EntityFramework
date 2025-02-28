@@ -149,6 +149,67 @@ public class Bookstore
             Console.WriteLine("Book not available for reservation.");
         }
     }
+    public void RemoveReservation()
+    {
+        Console.Write("Enter reservation ID to remove: ");
+        if (!int.TryParse(Console.ReadLine(), out int reservationId))
+        {
+            Console.WriteLine("Invalid input.");
+            return;
+        }
+
+        var reservation = _context.Reservations
+            .Include(r => r.Book)
+            .FirstOrDefault(r => r.Id == reservationId);
+
+        if (reservation == null)
+        {
+            Console.WriteLine("Reservation not found.");
+            return;
+        }
+
+        _context.Reservations.Remove(reservation);
+
+        if (reservation.Book != null)
+        {
+            reservation.Book.StockCount++;
+        }
+
+        _context.SaveChanges();
+        Console.WriteLine("Reservation removed successfully.");
+    }
+
+    public void ShowReservations()
+    {
+        Console.Write("Enter customer ID: ");
+        int customerId = int.Parse(Console.ReadLine());
+
+        var customer = _context.Customers
+            .Include(c => c.Reservations)
+            .ThenInclude(r => r.Book)
+            .FirstOrDefault(c => c.Id == customerId);
+
+        if (customer == null)
+        {
+            Console.WriteLine("Customer not found.");
+            return;
+        }
+
+        Console.WriteLine($"Customer: {customer.Name}");
+        if (customer.Reservations.Any())
+        {
+            Console.WriteLine("Reservations:");
+            foreach (var reservation in customer.Reservations)
+            {
+                Console.WriteLine($"- Reservation ID: {reservation.Id}, Book: {reservation.Book.Title}, Date: {reservation.ReservationDate}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No reservations found.");
+        }
+    }
+
 
     public void DisplayAllBooks()
     {
@@ -162,7 +223,14 @@ public class Bookstore
 
         foreach (var book in books)
         {
-            Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author.FullName}, Genre: {book.Genre}, Year: {book.Year}, Price: {book.SalePrice}, Publisher: {book.Publisher.Name}, Stock: {book.StockCount}");
+            if (book.PreviousBook != null)
+            {
+                Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author.FullName}, Genre: {book.Genre}, Year: {book.Year}, Pages: {book.PageCount}, Price for sale: {book.SalePrice}, Price for buy: {book.CostPrice}, Publisher: {book.Publisher.Name}, Stock: {book.StockCount}, Previous book: {book.PreviousBook}");
+            }
+            else 
+            { 
+                Console.WriteLine($"ID: {book.Id}, Title: {book.Title}, Author: {book.Author.FullName}, Genre: {book.Genre}, Year: {book.Year}, Pages: {book.PageCount}, Price for sale: {book.SalePrice}, Price for buy: {book.CostPrice}, Publisher: {book.Publisher.Name}, Stock: {book.StockCount}");
+            }
         }
     }
 }

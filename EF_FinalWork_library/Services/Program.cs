@@ -16,7 +16,9 @@ class Program
             Console.WriteLine("2. Edit book");
             Console.WriteLine("3. Remove book");
             Console.WriteLine("4. Reserve book");
-            Console.WriteLine("5. Show all books");
+            Console.WriteLine("5. Remove reservation");
+            Console.WriteLine("6. Show Reservations");
+            Console.WriteLine("7. Show all books");
             Console.WriteLine("0. Exit");
 
             Console.Write("Choose an option: ");
@@ -37,6 +39,12 @@ class Program
                     bookstore.ReserveBook();
                     break;
                 case "5":
+                    bookstore.RemoveReservation();
+                    break;
+                case "6":
+                    bookstore.ShowReservations();
+                    break;
+                case "7":
                     bookstore.DisplayAllBooks();
                     break;
                 case "0":
